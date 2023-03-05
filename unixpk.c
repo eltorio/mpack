@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+#include <getopt.h>
 #include "common.h"
 #include "version.h"
 #include "xmalloc.h"
