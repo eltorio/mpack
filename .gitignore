@@ -1,0 +1,14 @@
+*.o
+compile
+config.log
+config.status
+configure.in~
+configure~
+depcomp
+Makefile
+mpack
+mpack.1
+munpack
+munpack.1
+*.Po
+autom4te.cache

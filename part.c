@@ -25,9 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "unixos.h"
 
 #include "part.h"
 #include "xmalloc.h"
@@ -35,18 +33,18 @@
 #define BUFSIZE 1024 /* must be > PART_MAX_BOUNDARY_LEN */
 #define GROWBOUNDARY 20
 
-static int pendingboundary(struct part *part);
+static int pendingboundary(struct _part *part);
 
 /*
- * Create, initialize, and return a new struct part pointer
+ * Create, initialize, and return a new struct _part pointer
  * for the input file 'infile'.
  */
-struct part *part_init(FILE *infile)
+struct _part *part_init(FILE *infile)
 {
-    static struct part zeropart;
-    struct part *newpart;
+    static struct _part zeropart;
+    struct _part *newpart;
 
-    newpart = (struct part *)xmalloc(sizeof(struct part));
+    newpart = (struct _part *)xmalloc(sizeof(struct _part));
     *newpart = zeropart;
     newpart->infile = infile;
     newpart->buf = (unsigned char *)xmalloc(BUFSIZE);
@@ -58,7 +56,7 @@ struct part *part_init(FILE *infile)
 /*
  * Close and free 'part'.
  */
-int part_close(struct part *part)
+int part_close(struct _part *part)
 {
     fclose(part->infile);
     if (part->buf) free(part->buf);
@@ -69,7 +67,7 @@ int part_close(struct part *part)
  * Return the multipart depth of 'part'.  Top-level is '0'.
  */
 int
-part_depth(struct part *part)
+part_depth(struct _part *part)
 {
     return part->boundary_num;
 }
@@ -78,7 +76,7 @@ part_depth(struct part *part)
  * Add to 'part' the multipart boundary 'boundary'.
  */
 int
-part_addboundary(struct part *part, char *boundary)
+part_addboundary(struct _part *part, char *boundary)
 {
     /* Grow boundary array if necessary */
     if (part->boundary_num == part->boundary_alloc) {
@@ -109,7 +107,7 @@ part_addboundary(struct part *part, char *boundary)
  * input character or EOF if at a boundary or end of file.
  */
 int
-part_fill(struct part *part)
+part_fill(struct _part *part)
 {
     /* part_getc() decremented this before calling us, put it back */
     part->cnt++;
@@ -144,7 +142,7 @@ part_fill(struct part *part)
  * returned.
  */
 char *
-part_gets(char *s, int n, struct part *part)
+part_gets(char *s, int n, struct _part *part)
 {
     int c;
     char *p = s;
@@ -166,7 +164,7 @@ part_gets(char *s, int n, struct part *part)
  * character using the prot_ungetc() macro.
  */
 int
-part_ungets(char *s, struct part *part)
+part_ungets(char *s, struct _part *part)
 {
     int len = strlen(s);
     int i;
@@ -202,7 +200,7 @@ part_ungets(char *s, struct part *part)
  * boundary of the current multipart.
  */
 int
-part_readboundary(struct part *part)
+part_readboundary(struct _part *part)
 {
     int c;
     int sawfinal = 0;
@@ -247,7 +245,7 @@ part_readboundary(struct part *part)
  * is positioned at a boundary.
  */
 static int
-pendingboundary(struct part *part)
+pendingboundary(struct _part *part)
 {
     int bufleft;
     int i;

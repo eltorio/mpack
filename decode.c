@@ -41,18 +41,18 @@ extern char *md5contextTo64(MD5_CTX *context);
 /* The possible content transfer encodings */
 enum encoding { enc_none, enc_qp, enc_base64 };
 
-char *ParseHeaders(struct part *inpart, char **subjectp, char **contentTypep, enum encoding *contentEncodingp, char **contentDispositionp, char **contentMD5p);
+char *ParseHeaders(struct _part *inpart, char **subjectp, char **contentTypep, enum encoding *contentEncodingp, char **contentDispositionp, char **contentMD5p);
 enum encoding parseEncoding(char *s);
 params ParseContent(char **headerp);
 char *getParam(params cParams, char *key);
 char *getDispositionFilename(char *disposition);
-void from64(struct part *inpart, FILE *outfile, char **digestp, int suppressCR);
-void fromqp(struct part *inpart, FILE *outfile, char **digestp);
-void fromnone(struct part *inpart, FILE *outfile, char **digestp);
+void from64(struct _part *inpart, FILE *outfile, char **digestp, int suppressCR);
+void fromqp(struct _part *inpart, FILE *outfile, char **digestp);
+void fromnone(struct _part *inpart, FILE *outfile, char **digestp);
 /*
  * Read and handle an RFC 822 message from the body-part 'inpart'.
  */
-int handleMessage(struct part *inpart, char *defaultContentType, int inAppleDouble, int extractText)
+int handleMessage(struct _part *inpart, char *defaultContentType, int inAppleDouble, int extractText)
 {
     char *headers, *subject, *contentType, *contentDisposition, *contentMD5;
     enum encoding contentEncoding;
@@ -179,7 +179,7 @@ void SkipWhitespace(char **s)
  * in the enum pointed to by 'contentEncodingp'.
  */
 #define HEADGROWSIZE 1000
-char *ParseHeaders(struct part *inpart, char **subjectp, char **contentTypep, enum encoding *contentEncodingp, char **contentDispositionp, char **contentMD5p)
+char *ParseHeaders(struct _part *inpart, char **subjectp, char **contentTypep, enum encoding *contentEncodingp, char **contentDispositionp, char **contentMD5p)
 {
     static int alloced = 0;
     static char *headers;
@@ -597,14 +597,14 @@ getDispositionFilename(char *disposition)
 /*
  * Read and handle a message/partial object from the file 'inpart'.
  */
-int handlePartial(struct part *inpart, char *headers, params contentParams, int extractText)
+int handlePartial(struct _part *inpart, char *headers, params contentParams, int extractText)
 {
     char *id, *dir, *p;
     int thispart;
     int nparts = 0;
     char buf[1024];
     FILE *partfile, *outfile;
-    struct part *outpart;
+    struct _part *outpart;
     int i, docopy;
 
     id = getParam(contentParams, "id");
@@ -790,7 +790,7 @@ int handlePartial(struct part *inpart, char *headers, params contentParams, int 
 /*
  * Skip over a message object from the file 'inpart'.
  */
-int ignoreMessage(struct part *inpart)
+int ignoreMessage(struct _part *inpart)
 {
     while (part_getc(inpart) != EOF);
     return 0;
@@ -799,7 +799,7 @@ int ignoreMessage(struct part *inpart)
 /*
  * Read and handle a multipart object from 'inpart'.
  */
-int handleMultipart(struct part *inpart, char *contentType, params contentParams, int extractText)
+int handleMultipart(struct _part *inpart, char *contentType, params contentParams, int extractText)
 {
     char *id;
     char *defaultContentType = "text/plain";
@@ -861,7 +861,7 @@ int handleMultipart(struct part *inpart, char *contentType, params contentParams
  * Handle a text message object from 'inpart' by saving it to
  * the temporary description file.
  */
-int handleText(struct part *inpart, enum encoding contentEncoding)
+int handleText(struct _part *inpart, enum encoding contentEncoding)
 {
     FILE *descfile;
 
@@ -894,7 +894,7 @@ int handleText(struct part *inpart, enum encoding contentEncoding)
 /*
  * Read a message object from 'inpart' and save it to a file.
  */
-int saveToFile(struct part *inpart, int inAppleDouble, char *contentType, params contentParams, enum encoding contentEncoding, char *contentDisposition, char *contentMD5)
+int saveToFile(struct _part *inpart, int inAppleDouble, char *contentType, params contentParams, enum encoding contentEncoding, char *contentDisposition, char *contentMD5)
 {
     FILE *outfile = 0;
     int flags = 0;
@@ -1008,7 +1008,7 @@ static char index_64[256] = {
 };
 #define CHAR64(c)  (index_64[(unsigned char)(c)])
 
-void from64(struct part *inpart, FILE *outfile, char **digestp, int suppressCR)
+void from64(struct _part *inpart, FILE *outfile, char **digestp, int suppressCR)
 {
     int c1, c2, c3, c4;
     int DataDone = 0;
@@ -1063,7 +1063,7 @@ void from64(struct part *inpart, FILE *outfile, char **digestp, int suppressCR)
     if (digestp) *digestp = md5contextTo64(&context);
 }
 
-void fromqp(struct part *inpart, FILE *outfile, char **digestp)
+void fromqp(struct _part *inpart, FILE *outfile, char **digestp)
 {
     int c1, c2;
     MD5_CTX context;
@@ -1094,7 +1094,7 @@ void fromqp(struct part *inpart, FILE *outfile, char **digestp)
     if (digestp) *digestp=md5contextTo64(&context);
 }
 
-void fromnone(struct part *inpart, FILE *outfile, char **digestp)
+void fromnone(struct _part *inpart, FILE *outfile, char **digestp)
 {
     int c;
     char ch;

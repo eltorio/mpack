@@ -22,8 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-#include <stdlib.h>
-#include <stdio.h>
+#include "unixos.h"
 #include <ctype.h>
 #include <string.h>
 #include "xmalloc.h"
@@ -72,7 +71,7 @@ static char bchar[256] = {
 /*
  * Read an input file, looking for data in split-uuencode format
  */
-int handleUuencode(struct part *inpart, char *subject, int extractText)
+int handleUuencode(struct _part *inpart, char *subject, int extractText)
 {
     char *fname = 0, *tmpfname;
     int part, nparts;
@@ -409,7 +408,7 @@ int handleUuencode(struct part *inpart, char *subject, int extractText)
  * If firstline is non-null, it is written as the first line of the saved part
  */
 int
-saveUuFile(struct part *inpart, char *fname, int part, int nparts, char *firstline)
+saveUuFile(struct _part *inpart, char *fname, int part, int nparts, char *firstline)
 {
     char buf[1024];
     char *dir;
@@ -663,7 +662,7 @@ uudecodefiles(char *dir, int nparts)
 	    st_binhex} state;
     FILE *infile;
     FILE *outfile = NULL;
-    struct part *inpart;
+    struct _part *inpart;
     char buf[1024];
     char lastline[UULENGTH+1];
     char *fname, *p;

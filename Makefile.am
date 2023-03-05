@@ -5,12 +5,12 @@ bin_PROGRAMS=mpack munpack
 
 mpack_SOURCES=unixpk.c encode.c codes.c magic.c unixos.c xmalloc.c \
 	md5c.c
-mpack_LDADD=@LIBOBJS@ @LIB_SOCKET@
+mpack_LDADD=@LIBOBJS@
 
 munpack_SOURCES=unixunpk.c decode.c uudecode.c codes.c unixos.c \
 	part.c xmalloc.c md5c.c
 
-munpack_LDADD=@LIBOBJS@ @LIB_SOCKET@
+munpack_LDADD=@LIBOBJS@
 
 noinst_HEADERS=common.h md5.h part.h version.h xmalloc.h
 man_MANS=mpack.1 munpack.1

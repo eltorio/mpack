@@ -22,10 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-extern char *malloc(), *realloc();
+#include "unixos.h"
+//#include <string.h>
+// extern char *malloc(), *realloc();
 
 char *xmalloc (int size)
 {

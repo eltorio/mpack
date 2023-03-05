@@ -99,7 +99,7 @@ static binhex_state bh;
 
 /* process a binhex character
  */
-static void binhex_process(struct part *inpart)
+static void binhex_process(struct _part *inpart)
 {
 	unsigned short tmpcrc, cval;
 	unsigned char ctmp, c = bh.rlebuf;
@@ -216,7 +216,7 @@ static void binhex_process(struct part *inpart)
  * decode a binhex file
  *  returns -1 on fatal error, 0 for continue, 1 for done
  */
-int os_binhex(struct part *inpart, int part, int nparts)
+int os_binhex(struct _part *inpart, int part, int nparts)
 {
 	long val;
 	int c;

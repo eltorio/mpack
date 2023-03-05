@@ -22,10 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
+#include "unixos.h"
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/param.h>
@@ -39,9 +36,9 @@
 #define MAXHOSTNAMELEN 64
 #endif
 
-extern int errno;
-extern char *malloc();
-extern char *getenv();
+// extern int errno;
+// extern char *malloc();
+// extern char *getenv();
 
 int overwrite_files = 0;
 int didchat;
@@ -253,7 +250,7 @@ void os_closetypedfile(FILE *outfile)
  * (Don't) Handle a BinHex'ed file
  */
 int
-os_binhex(struct part *inpart, int part, int nparts)
+os_binhex(struct _part *inpart, int part, int nparts)
 {
     return 1;
 }

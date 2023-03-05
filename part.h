@@ -25,12 +25,13 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-
+#ifndef PART_H_
+#define PART_H_
 /* Max length of a MIME "boundary", per RFC 1521 */
 #define PART_MAX_BOUNDARY_LEN 70
 
 /* Structure describing an input file from which we read MIME */
-struct part {
+struct _part {
     /* Input file */
     FILE *infile;
 
@@ -54,6 +55,7 @@ struct part {
 
 #define part_ungetc(c, s) ((s)->cnt++, ((s)->boundary_seen = (s)->boundary_num), (*--(s)->ptr = (c)))
 
-extern struct part *part_init(FILE *infile);
-extern char *part_gets(char *s, int n, struct part *part);
+extern struct _part *part_init(FILE *infile);
+extern char *part_gets(char *s, int n, struct _part *part);
 
+#endif

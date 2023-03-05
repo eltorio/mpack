@@ -22,9 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "unixos.h"
 #include <errno.h>
 #include <getopt.h>
 #include "common.h"
