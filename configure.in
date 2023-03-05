@@ -1,4 +1,5 @@
-AC_INIT(common.h)
+AC_INIT
+AC_CONFIG_SRCDIR([common.h])
 AM_INIT_AUTOMAKE(mpack,1.6)
 AC_PROG_CC
 
@@ -7,4 +8,5 @@ CMU_SOCKETS
 AC_CHECK_FUNCS([strchr])
 AC_REPLACE_FUNCS([strcasecmp getopt])
 
-AC_OUTPUT([Makefile])
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

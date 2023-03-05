@@ -24,7 +24,7 @@
  * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.  */
-
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
