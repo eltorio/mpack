@@ -28,6 +28,9 @@
 #include "common.h"
 #include "version.h"
 #include "xmalloc.h"
+#include "encode.h"
+#define _GNU_SOURCE
+#include <unistd.h>
 
 #define MAXADDRESS 100
 

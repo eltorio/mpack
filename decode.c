@@ -32,23 +32,14 @@
 #include "common.h"
 #include "part.h"
 #include "md5.h"
+#include "decode.h"
 
 extern char *os_idtodir(char *id);
 extern FILE *os_newtypedfile(char *fname, char *contentType, int flags, params contentParams);
 extern FILE *os_createnewfile(char *fname);
 extern char *md5contextTo64(MD5_CTX *context);
 
-/* The possible content transfer encodings */
-enum encoding { enc_none, enc_qp, enc_base64 };
 
-char *ParseHeaders(struct _part *inpart, char **subjectp, char **contentTypep, enum encoding *contentEncodingp, char **contentDispositionp, char **contentMD5p);
-enum encoding parseEncoding(char *s);
-params ParseContent(char **headerp);
-char *getParam(params cParams, char *key);
-char *getDispositionFilename(char *disposition);
-void from64(struct _part *inpart, FILE *outfile, char **digestp, int suppressCR);
-void fromqp(struct _part *inpart, FILE *outfile, char **digestp);
-void fromnone(struct _part *inpart, FILE *outfile, char **digestp);
 /*
  * Read and handle an RFC 822 message from the body-part 'inpart'.
  */
@@ -320,7 +311,7 @@ enum encoding parseEncoding(char *s)
  * and parameters.  The parameters are converted to a type suitable for
  * getParm() and returned.
  */
-#define PARAMGROWSIZE 10
+
 params ParseContent(char **headerp)
 {
     char *header;

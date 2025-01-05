@@ -25,13 +25,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "encode.h"
 
 extern char *magic_look(FILE *infile);
 extern char *os_genid(void);
 extern FILE *os_createnewfile(char *fname);
 extern char *md5digest(FILE *infile, long int *len);
 
-#define NUMREFERENCES 4
 
 /*
  * Encode a file into one or more MIME messages, each

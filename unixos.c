@@ -23,13 +23,17 @@
  * SOFTWARE.
  */
 #include "unixos.h"
+#include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <netdb.h>
 #include <fcntl.h>
+#include <time.h>
 #include "xmalloc.h"
 #include "common.h"
+#include <ctype.h>
 #include "part.h"
 
 #ifndef MAXHOSTNAMELEN
@@ -74,7 +78,7 @@ char *os_genid(void)
     }
 
     result = malloc(25+strlen(hostname));
-    sprintf(result, "%d.%d@%s", pid, curtime++, hostname);
+    sprintf(result, "%d.%ld@%s", pid, curtime++, hostname);
     return result;
 }
 
@@ -266,7 +270,7 @@ void os_warnMD5mismatch(void)
     warning = xmalloc(strlen(output_fname) + 100);
     sprintf(warning, "%s was corrupted in transit",
 	    output_fname);
-    warn(warning);
+    fprintf(stderr, "%s", warning);
     free(warning);
 }
 
