@@ -294,8 +294,3 @@ void inews(FILE *infile)
     perror("execl");
     _exit(1);
 }
-
-void warn(void)
-{
-    abort();
-}

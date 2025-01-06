@@ -33,6 +33,7 @@
 #include "part.h"
 #include "md5.h"
 #include "decode.h"
+#include "os.h"
 
 extern char *os_idtodir(char *id);
 extern FILE *os_newtypedfile(char *fname, char *contentType, int flags, params contentParams);

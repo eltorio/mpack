@@ -40,8 +40,8 @@ WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.  */
 #include <ctype.h>
 #include "xmalloc.h"
 #include "md5.h"
+#include "codes.h"
 
-void output64chunk(int c1, int c2, int c3, int pads, FILE *outfile);
 static char basis_64[] =
    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 

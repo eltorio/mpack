@@ -28,6 +28,7 @@
 #include "xmalloc.h"
 #include "common.h"
 #include "part.h"
+#include "decode.h"
 
 extern char *os_idtodir(char *id);
 extern FILE *os_newtypedfile(char *fname, char *contentType, int flags, params contentParams);

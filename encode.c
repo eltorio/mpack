@@ -26,6 +26,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "encode.h"
+#include "os.h"
+#include "codes.h"
 
 extern char *magic_look(FILE *infile);
 extern char *os_genid(void);

@@ -17,6 +17,8 @@
 #ifndef DECODE_H
 #define DECODE_H
 
+#include <ctype.h>
+
 #define PARAMGROWSIZE 10
 
 /* The possible content transfer encodings */

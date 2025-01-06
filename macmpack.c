@@ -41,6 +41,7 @@
 #include "macICTypes.h"
 #include "macICAPI.h"
 #include "macICKeys.h"
+#include "decode.h"
 
 /* ThinkC's internal stdio functions: */
 #include <ansi_private.h>
@@ -146,8 +147,7 @@ typedef struct mailwin {
 #define MS_ENCODE	2	/* Do encoding */
 #define MS_SENDING	3	/* Sending email */
 
-/* some prototypes */
-void warn(char *str);
+/* some prototypes */s
 void stattext(Str255, unsigned char);
 static void do_decodefiles(na_win *);
 static void addfile(listwin *, FSSpec *);

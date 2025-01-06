@@ -25,6 +25,7 @@
 #include "unixos.h"
 #include "version.h"
 #include "part.h"
+#include "decode.h"
 
 extern int optind;
 extern char *optarg;
