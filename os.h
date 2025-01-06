@@ -8,6 +8,6 @@ void os_closetypedfile(FILE *outfile);
 void os_warnMD5mismatch(void);
 void chat(char *s);
 
-#define warn(s)  fprintf(stderr, "munpack: warning: %s\n", s);
+#define warn(s)  fprintf(stderr, "mpack: warning: %s\n", s);
 
 #endif
