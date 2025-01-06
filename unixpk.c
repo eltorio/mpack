@@ -25,6 +25,7 @@
 #include "unixos.h"
 #include <errno.h>
 #include <getopt.h>
+#include <sys/wait.h>
 #include "common.h"
 #include "version.h"
 #include "xmalloc.h"
