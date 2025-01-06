@@ -25,6 +25,7 @@
 #include "unixos.h"
 #include <ctype.h>
 #include <string.h>
+#include <unistd.h>
 #include "xmalloc.h"
 #include "common.h"
 #include "part.h"

@@ -26,6 +26,7 @@
 #include "version.h"
 #include "part.h"
 #include "decode.h"
+#include <unistd.h>
 
 extern int optind;
 extern char *optarg;
