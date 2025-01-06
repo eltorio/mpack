@@ -29,6 +29,7 @@
 #include "version.h"
 #include "xmalloc.h"
 #include "encode.h"
+#include "os.h"
 #define _GNU_SOURCE
 #include <unistd.h>
 

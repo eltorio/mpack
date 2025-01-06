@@ -61,6 +61,7 @@ int part_close(struct _part *part)
     fclose(part->infile);
     if (part->buf) free(part->buf);
     if (part->boundary) free(part->boundary);
+    return 0;
 }
 
 /*
@@ -98,6 +99,7 @@ part_addboundary(struct _part *part, char *boundary)
     if (part->boundary_seen+1 == part->boundary_num) {
 	part->boundary_seen++;
     }
+    return 0;
 }
 
 /*
@@ -192,6 +194,7 @@ part_ungets(char *s, struct _part *part)
     for (i = 0; i < len; i++) {
 	part->ptr[i] = s[i];
     }
+    return 0;
 }
 
 /*
