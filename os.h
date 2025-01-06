@@ -3,8 +3,10 @@
 #include <stdio.h>
 
 void os_perror(char *file);
-void warn(char *str){
-    printf("%s\n", str);
+
+void warn(char *s)
+{
+    fprintf(stderr, "munpack: warning: %s\n", s);
 }
 
 #endif

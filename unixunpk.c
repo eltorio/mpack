@@ -105,11 +105,6 @@ void usage(void) {
     exit(1);
 }
 
-void warn(char *s)
-{
-    fprintf(stderr, "munpack: warning: %s\n", s);
-}
-
 void chat(char *s)
 {
     didchat = 1;
