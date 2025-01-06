@@ -3,10 +3,11 @@
 #include <stdio.h>
 
 void os_perror(char *file);
+void os_donewithdir(char *dir);
+void os_closetypedfile(FILE *outfile);
+void os_warnMD5mismatch(void);
+void chat(char *s);
 
-void warn(char *s)
-{
-    fprintf(stderr, "munpack: warning: %s\n", s);
-}
+#define warn(s)  fprintf(stderr, "munpack: warning: %s\n", s);
 
 #endif

@@ -33,6 +33,10 @@ void from64(struct _part *inpart, FILE *outfile, char **digestp, int suppressCR)
 void fromqp(struct _part *inpart, FILE *outfile, char **digestp);
 void fromnone(struct _part *inpart, FILE *outfile, char **digestp);
 int handleMessage(struct _part *inpart, char *defaultContentType, int inAppleDouble, int extractText);
-
+int handlePartial(struct _part *inpart, char *headers, params contentParams, int extractText);
+int handleText(struct _part *inpart, enum encoding contentEncoding);
+int handleMultipart(struct _part *inpart, char *contentType, params contentParams, int extractText);
+int ignoreMessage(struct _part *inpart);
+int saveToFile(struct _part *inpart, int inAppleDouble, char *contentType, params contentParams, enum encoding contentEncoding, char *contentDisposition, char *contentMD5);
 
 #endif /* DECODE_H */

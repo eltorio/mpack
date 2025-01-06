@@ -33,6 +33,7 @@
 #include "part.h"
 #include "md5.h"
 #include "decode.h"
+#include "uudecode.h"
 #include "os.h"
 
 extern char *os_idtodir(char *id);

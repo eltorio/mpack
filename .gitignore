@@ -12,3 +12,4 @@ munpack
 munpack.1
 *.Po
 autom4te.cache
+*.Tpo

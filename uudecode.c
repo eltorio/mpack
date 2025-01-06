@@ -28,7 +28,9 @@
 #include "xmalloc.h"
 #include "common.h"
 #include "part.h"
+#include "os.h"
 #include "decode.h"
+#include "uudecode.h"
 
 extern char *os_idtodir(char *id);
 extern FILE *os_newtypedfile(char *fname, char *contentType, int flags, params contentParams);
@@ -846,7 +848,7 @@ int uudecodeline(char *line, FILE *outfile)
 	}
 	line += 4;
     }
-    return;
+    return 0;
 }
 
     

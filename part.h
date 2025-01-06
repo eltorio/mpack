@@ -54,6 +54,12 @@ struct _part {
 #define part_getc(s) (((s)->cnt-- > 0 && (s)->ptr[0] != '\n') ? (int)*(s)->ptr++ : part_fill(s))
 
 #define part_ungetc(c, s) ((s)->cnt++, ((s)->boundary_seen = (s)->boundary_num), (*--(s)->ptr = (c)))
+int part_close(struct _part *part);
+int part_depth(struct _part *part);
+int part_ungets(char *s, struct _part *part);
+int part_fill(struct _part *part);
+int part_addboundary(struct _part *part, char *boundary);
+int part_readboundary(struct _part *part);
 
 extern struct _part *part_init(FILE *infile);
 extern char *part_gets(char *s, int n, struct _part *part);
